@@ -1,0 +1,70 @@
+<div class="container-fluid mt-5">
+  <div class="col-10">
+    <div class="jumbotron pt-3 pb-3">
+      <h3><i class="fas fa-user-astronaut"></i> Edit User</h3>
+    </div>
+  </div>
+  <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)" novalidate="novalidate" autocomplete="off">
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="firstName">First name</label>
+        <input #cfn="ngModel" [ngClass]="{'is-invalid': cfn.errors}" required minlength="2" [(ngModel)]="customers.firstName" name="firstName" type="text"
+               class="form-control" id="firstName" value={{customers?.firstName}}>
+        <div class="invalid-feedback" [hidden]="!cfn.errors?.required">
+          ya tahat
+        </div>
+        <div class="invalid-feedback" [hidden]="!cfn.errors?.minlength">
+          minlength is blh blah
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="lastName">Last name</label>
+        <input #cln="ngModel" [(ngModel)]="customers.lastName" [ngClass]="{'is-invalid': cln.errors}" minlength="2" name="lastName" type="text" class="form-control" id="lastName"
+               value={{customers?.lastName}}>
+        <div class="invalid-feedback" [hidden]="!cln.errors?.required">
+          ya tahat
+        </div>
+        <div class="invalid-feedback" [hidden]="!cln.errors?.minlength">
+          minlength is blh blah
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="userEmail">Email</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupPrepend">@</span>
+          </div>
+          <input [(ngModel)]="customers.userEmail" name="userEmail" type="text" class="form-control" id="userEmail"
+                 value={{customers?.userEmail}} aria-describedby="inputGroupPrepend">
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-3 mb-3">
+        <label for="userPhone">Phone</label>
+        <input [(ngModel)]="customers.userPhone" value={{customers?.userPhone}} name="userPhone" type="text" class="form-control" id="userPhone">
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="userBirthday">Birthday</label>
+        <input [(ngModel)]="customers.userBirthday" name="userBirthday" type="text" value={{customers?.userBirthday}} class="form-control"
+               id="userBirthday">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="userAddress">Address</label>
+        <input [(ngModel)]="customers.userAddress" name="userAddress" type="text" value={{customers?.userAddress}} class="form-control" id="userAddress"
+               placeholder="Address">
+      </div>
+
+    </div>
+
+
+    <div class="form-group">
+      <label for="userNotes">Notes</label>
+      <textarea [(ngModel)]="customers.userNotes" name="userNotes" class="form-control col-md-4" id="userNotes"
+                rows="3">{{customers?.userNotes}}</textarea>
+    </div>
+    <input [disabled]="!userForm.form.valid" class="btn btn-primary" name="submit" value="Update User"
+           type="submit">
+    <a href="" routerLink="/users" class="btn btn-warning ml-3"> Changed Me Mind</a>
+  </form>
+</div>
